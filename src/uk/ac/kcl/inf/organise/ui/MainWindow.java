@@ -14,6 +14,7 @@ public class MainWindow extends JFrame implements WindowListener {
     private final JTabbedPane _views;
     private final TaskView _tasks;
     private final TaskTreePanel _tree;
+    private final ConfigurationPanel _config;
     private final EventBus _bus;
 
     public MainWindow (Database database, EventBus bus) {
@@ -22,10 +23,12 @@ public class MainWindow extends JFrame implements WindowListener {
         _bus = bus;
         _tasks = new TaskView (database, bus);
         _tree = new TaskTreePanel (database, bus);
+        _config = new ConfigurationPanel ();
         _views = new JTabbedPane ();
         
         _views.add ("Priorities", _tasks);
         _views.add ("Relations", _tree);
+        _views.add ("Configure", _config);
         add (_views);
         
         addWindowListener (this);

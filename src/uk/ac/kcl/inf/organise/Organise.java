@@ -33,7 +33,7 @@ public class Organise {
         Organise organiser;
         boolean summary = false;
         boolean force = false;
-        
+
         Settings.initialise (Organise.class);
 
         if (arguments.length > 0 && arguments[0].equals ("summary")) {

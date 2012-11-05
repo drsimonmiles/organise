@@ -1,8 +1,8 @@
 <launch4jConfig>
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\code\organise\dist\organise.jar</jar>
-  <outfile>D:\Work\Scripts\Organise.exe</outfile>
+  <jar>dist\organise.jar</jar>
+  <outfile>D:\Code\organise\Organise.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir></chdir>
