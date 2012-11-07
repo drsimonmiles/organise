@@ -25,7 +25,11 @@ public class TaskTreeModel implements TreeModel {
 
     public void fireAdd (TreeModelEvent event) {
         for (TreeModelListener listener : _listeners) {
-            listener.treeNodesInserted (event);
+            try {
+                listener.treeNodesInserted (event);
+            } catch (Throwable cannotAdd) {
+                System.err.println (cannotAdd.getMessage ());
+            }
         }
     }
 
@@ -40,13 +44,17 @@ public class TaskTreeModel implements TreeModel {
             listener.treeNodesRemoved (event);
         }
     }
-    
+
     public void fireRestructure (TreeModelEvent event) {
         for (TreeModelListener listener : _listeners) {
-            listener.treeStructureChanged (event);
+            try {
+                listener.treeStructureChanged (event);
+            } catch (Throwable cannotRestructure) {
+                System.err.println (cannotRestructure.getMessage ());
+            }
         }
     }
-    
+
     @Override
     public Object getRoot () {
         return _root;

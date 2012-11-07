@@ -19,7 +19,7 @@ public class Organise {
 
         _controller = new Controller (database, display, bus);
     }
-    
+
     public Database getDatabase () {
         return _controller.getDatabase ();
     }
@@ -29,7 +29,7 @@ public class Organise {
         return this;
     }
 
-    public static void main (String[] arguments) throws Exception {
+    public static void main (String[] arguments) {
         Organise organiser;
         boolean summary = false;
         boolean force = false;
@@ -44,17 +44,23 @@ public class Organise {
         }
         if (!summary && !force) {
             if (Settings.get ().isOpenInstance ()) {
+                System.err.println ("Already open instance");
                 return;
             } else {
                 OpenInstanceRenewer.get ().start ();
             }
         }
-        organiser = new Organise ();
-        if (summary) {
-            SummaryGenerator.generate (arguments[1], organiser.getDatabase ());
-            System.exit (0);
-        } else {
-            organiser.run ();
+        try {
+            organiser = new Organise ();
+            if (summary) {
+                SummaryGenerator.generate (arguments[1], organiser.getDatabase ());
+                System.exit (0);
+            } else {
+                organiser.run ();
+            }
+        } catch (Throwable problem) {
+            problem.printStackTrace ();
+            System.exit (1);
         }
     }
 }
