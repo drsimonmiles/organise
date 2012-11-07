@@ -7,6 +7,7 @@ import java.util.List;
 import uk.ac.kcl.inf.organise.access.AccessException;
 import uk.ac.kcl.inf.organise.access.DatabaseLoader;
 import uk.ac.kcl.inf.organise.access.DatabaseSaver;
+import uk.ac.kcl.inf.organise.access.SummaryGenerator;
 import uk.ac.kcl.inf.organise.data.Database;
 import uk.ac.kcl.inf.organise.data.Priority;
 import uk.ac.kcl.inf.organise.data.Task;
@@ -71,6 +72,7 @@ public class Controller implements OrganiseEventListener {
                 case closing:
                     save ();
                     _saver.saveHistory (_history);
+                    SummaryGenerator.generate (_database);
                     OpenInstanceRenewer.get ().close ();
                     break;
                 case taskCompleted:

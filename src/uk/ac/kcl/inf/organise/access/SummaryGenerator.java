@@ -24,7 +24,14 @@ public class SummaryGenerator {
     public static final String SUMMARY_FILE = "tasks.pdf";
     
     public static void generate (Database database) {
-        Path output = Settings.get ().getFilePath (SettingType.databaseDirectory).resolve (SummaryGenerator.SUMMARY_FILE);
+        Path summaryDirectory = Settings.get ().getFilePath (SettingType.summaryDirectory);
+        Path output;
+        
+        if (summaryDirectory != null) {
+            output = summaryDirectory.resolve (SummaryGenerator.SUMMARY_FILE);
+        } else {
+            output = Settings.get ().getFilePath (SettingType.databaseDirectory).resolve (SummaryGenerator.SUMMARY_FILE);
+        }
         generate (output, database);        
     }
     

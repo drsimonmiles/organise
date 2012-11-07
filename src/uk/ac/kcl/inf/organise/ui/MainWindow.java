@@ -23,7 +23,7 @@ public class MainWindow extends JFrame implements WindowListener {
         _bus = bus;
         _tasks = new TaskView (database, bus);
         _tree = new TaskTreePanel (database, bus);
-        _config = new ConfigurationPanel ();
+        _config = new ConfigurationPanel (bus);
         _views = new JTabbedPane ();
         
         _views.add ("Priorities", _tasks);
