@@ -13,11 +13,13 @@ public class Task {
     private String _notes;
     private EventBus _bus;
     private boolean _isTriggerOnly;
+    private int _allocated;
 
-    public Task (String project, String text, Priority priority, String notes, boolean isTriggerOnly, EventBus bus, Database database) {
+    public Task (String project, String text, Priority priority, String notes, int allocated, boolean isTriggerOnly, EventBus bus, Database database) {
         _project = project;
         _text = text;
         _priority = priority;
+        _allocated = allocated;
         _triggers = new LinkedList<> ();
         _notes = notes;
         _bus = bus;
@@ -27,11 +29,19 @@ public class Task {
         _isTriggerOnly = isTriggerOnly;
     }
 
+    public Task (String project, String text, Priority priority, String notes, boolean isTriggerOnly, EventBus bus, Database database) {
+        this (project, text, priority, notes, 60, isTriggerOnly, bus, database);
+    }
+    
     public void addTrigger (Trigger trigger) {
         _triggers.add (trigger);
         _bus.event (OrganiseEventType.triggerAdded).task (this).trigger (trigger).fire ();
     }
 
+    public int getAllocated () {
+        return _allocated;
+    }
+    
     public String getNotes () {
         return _notes;
     }
@@ -67,6 +77,10 @@ public class Task {
             _triggers.remove (trigger);
             _bus.event (OrganiseEventType.triggerDeleted).task (this).trigger (trigger).fire ();
         }
+    }
+    
+    public void setAllocated (int allocated) {
+        _allocated = allocated;
     }
 
     public void setPriority (Priority priority) {

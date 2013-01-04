@@ -28,7 +28,7 @@ public class DatabaseSaver {
     }
 
     public void save (Database database, PrintWriter out) {
-        out.println ("<database version=\"0.2\">");
+        out.println ("<database version=\"0.3\">");
         TaskUtils.cleanTasks (database);
         for (Task task : database.getTasks ()) {
             save (database, task, out);
@@ -47,6 +47,7 @@ public class DatabaseSaver {
             }
         }
         out.println ("  <notes>" + xmlText (task.getNotes ()) + "</notes>");
+        out.println ("  <allocated>" + task.getAllocated () + "</allocated>");
         out.println ("  <triggerOnly>" + task.isTriggerOnly () + "</triggerOnly>");
         out.println (" </task>");
     }

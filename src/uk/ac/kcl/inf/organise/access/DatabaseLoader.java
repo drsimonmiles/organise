@@ -123,6 +123,9 @@ public class DatabaseLoader {
                 case "0.2":
                     new DatabaseLoaderV02 (_bus).loadDatabase (database, document);
                     break;
+                case "0.3":
+                    new DatabaseLoaderV03 (_bus).loadDatabase (database, document);
+                    break;
                 default:
                     System.err.println ("Unknown version: " + version);
                     throw new Error ("Unknown version: " + version);
