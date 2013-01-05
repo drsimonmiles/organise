@@ -7,15 +7,22 @@ import java.util.List;
 import uk.ac.kcl.inf.organise.events.EventBus;
 import uk.ac.kcl.inf.organise.events.OrganiseEventType;
 import uk.ac.kcl.inf.organise.events.TaskDeleteEdit;
+import uk.ac.kcl.inf.organise.rules.Rule;
 
 public class Database {
     public static final String EVENTS_PROJECT = "Events";
     private final EventBus _bus;
     private final List<Task> _tasks;
+    private final List<Rule> _rules;
     
     public Database (EventBus bus) {
         _tasks = new LinkedList<> ();
+        _rules = new LinkedList<> ();
         _bus = bus;
+    }
+    
+    public void addRule (Rule rule) {
+        _rules.add (rule);
     }
     
     public void addTask (Task newTask) {
@@ -49,6 +56,11 @@ public class Database {
         }
     }
     
+    public void completeTask (Task task) {
+        _bus.event (OrganiseEventType.taskCompleted).task (task).fire ();
+        deleteTask (task);
+    }
+
     private void deleteProjectIfNecessary (String name) {
         for (Task task : _tasks) {
             if (task.getProject ().equals (name)) {
@@ -58,9 +70,8 @@ public class Database {
         _bus.event (OrganiseEventType.projectDeleted).project (name).fire ();
     }
     
-    public void completeTask (Task task) {
-        _bus.event (OrganiseEventType.taskCompleted).task (task).fire ();
-        deleteTask (task);
+    public void deleteRule (Rule rule) {
+        _rules.remove (rule);
     }
     
     public void deleteTask (Task task) {

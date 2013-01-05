@@ -16,7 +16,7 @@ import uk.ac.kcl.inf.organise.events.OrganiseEvent;
 import uk.ac.kcl.inf.organise.events.OrganiseEventListener;
 import uk.ac.kcl.inf.settings.Settings;
 
-public class TaskView extends JPanel implements ActionListener, OrganiseEventListener {
+public class PrioritiesPanel extends JPanel implements ActionListener, OrganiseEventListener {
     private final ProjectsPanel _projects;
     private final TopPanel _top;
     private final JPanel _buttons;
@@ -25,7 +25,7 @@ public class TaskView extends JPanel implements ActionListener, OrganiseEventLis
     private final Database _database;
     private final EventBus _bus;
 
-    public TaskView (Database database, EventBus bus) {
+    public PrioritiesPanel (Database database, EventBus bus) {
         _database = database;
         _bus = bus;
         _projects = new ProjectsPanel (database, bus);

@@ -15,7 +15,7 @@ public class OrganiseEvent {
     public String _priorString;
     public Priority _priorPriority;
     public Trigger _priorTrigger;
-    public int _position;
+    public int _position, _priorInteger;
 
     public OrganiseEvent (OrganiseEventType type, EventBus bus) {
         _bus = bus;
@@ -56,6 +56,11 @@ public class OrganiseEvent {
         return this;
     }
     
+    public OrganiseEvent prior (int priorInteger) {
+        _priorInteger = priorInteger;
+        return this;
+    }
+
     public OrganiseEvent project (String project) {
         _project = project;
         return this;

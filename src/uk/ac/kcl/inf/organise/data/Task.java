@@ -80,7 +80,9 @@ public class Task {
     }
     
     public void setAllocated (int allocated) {
+        int prior = _allocated;
         _allocated = allocated;
+        _bus.event (OrganiseEventType.taskAllocatedChanged).task (this).prior (prior).fire ();
     }
 
     public void setPriority (Priority priority) {

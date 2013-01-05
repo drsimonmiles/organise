@@ -45,12 +45,12 @@ public class TriggersPanel extends JPanel implements ActionListener {
         Trigger selected = (Trigger) _triggers.getSelectedValue ();
         Task anchor, current;
         
-        if (event.getSource () == _add && focused != null && anchored != null) {
+        if (event.getSource () == _add && focused != null && anchored != null && focused._task != null) {
             anchor = anchored._task;
             current = focused._task;
             current.addTrigger (new Trigger (anchor, current, _database));
         }
-        if (event.getSource () == _remove && focused != null && selected != null) {
+        if (event.getSource () == _remove && focused != null && selected != null && focused._task != null) {
             anchor = anchored._task;
             current = focused._task;
             for (Trigger trigger : current.getTriggers ()) {

@@ -8,24 +8,28 @@ import uk.ac.kcl.inf.organise.data.Task;
 
 public class PriorityIcon implements Icon {
     public static final int RADIUS = 5;
-    private final Task _task;
-    
+    private Task _task;
+
     public PriorityIcon (Task task) {
         _task = task;
     }
 
     @Override
     public void paintIcon (Component component, Graphics graphics, int x, int y) {
-        switch (_task.getPriority ()) {
-            case normal:
-                graphics.setColor (Color.green);
-                break;
-            case urgent:
-                graphics.setColor (Color.orange);
-                break;
-            case immediate:
-                graphics.setColor (Color.red);
-                break;
+        if (_task == null) {
+            graphics.setColor (Color.gray);
+        } else {
+            switch (_task.getPriority ()) {
+                case normal:
+                    graphics.setColor (Color.green);
+                    break;
+                case urgent:
+                    graphics.setColor (Color.orange);
+                    break;
+                case immediate:
+                    graphics.setColor (Color.red);
+                    break;
+            }
         }
         graphics.fillOval (x, y, RADIUS * 2, RADIUS * 2);
     }
@@ -38,5 +42,9 @@ public class PriorityIcon implements Icon {
     @Override
     public int getIconHeight () {
         return RADIUS * 2;
+    }
+    
+    public void open (Task task) {
+        _task = task;
     }
 }

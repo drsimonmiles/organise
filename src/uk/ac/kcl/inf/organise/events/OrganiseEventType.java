@@ -4,7 +4,7 @@ public enum OrganiseEventType {
     opening, closing,
     projectAdded, projectDeleted, projectRenamed,
     taskAdded, taskCompleted, taskDeleted, taskOrderChanged,
-    taskTextChanged, taskPriorityChanged,  taskNotesChanged,
+    taskTextChanged, taskPriorityChanged, taskAllocatedChanged, taskNotesChanged,
     triggerAdded, triggerDeleted,
     taskChildAdded, taskChildRemoved,
     taskInFocus, anchorChanged,

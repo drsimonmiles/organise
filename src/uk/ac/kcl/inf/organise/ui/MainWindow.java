@@ -12,21 +12,24 @@ import uk.ac.kcl.inf.organise.ui.tree.TaskTreePanel;
 public class MainWindow extends JFrame implements WindowListener {
     public static final String VERSION = "0.4";
     private final JTabbedPane _views;
-    private final TaskView _tasks;
+    private final PrioritiesPanel _tasks;
     private final TaskTreePanel _tree;
     private final ConfigurationPanel _config;
+    private final TaskDetailPanel _details;
     private final EventBus _bus;
 
     public MainWindow (Database database, EventBus bus) {
         super ("Organise v" + VERSION);
 
         _bus = bus;
-        _tasks = new TaskView (database, bus);
+        _tasks = new PrioritiesPanel (database, bus);
+        _details = new TaskDetailPanel (database, bus);
         _tree = new TaskTreePanel (database, bus);
         _config = new ConfigurationPanel (bus);
         _views = new JTabbedPane ();
         
         _views.add ("Priorities", _tasks);
+        _views.add ("Task", _details);
         _views.add ("Relations", _tree);
         _views.add ("Configure", _config);
         add (_views);
