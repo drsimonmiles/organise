@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import nu.xom.Builder;
 import nu.xom.Document;
@@ -20,6 +25,7 @@ import uk.ac.kcl.inf.organise.events.EventBus;
 import uk.ac.kcl.inf.settings.Settings;
 
 public class DatabaseLoader {
+    private static final SimpleDateFormat _format = new SimpleDateFormat ("yyyy MMM dd");
     public static final String DATABASE_FILE = "database.xml";
     public static final String HISTORY_FILE = "history.txt";
     public static final String NORMAL_PRIORITY = "NORMAL";
@@ -58,6 +64,18 @@ public class DatabaseLoader {
         } else {
             return false;
         }
+    }
+    
+    public static Date getDate (Node element, String path) {
+        try {
+            String text = getText (element, path, false);
+            Date date = _format.parse (text);
+            
+            return date;
+        } catch (ParseException ex) {
+            return null;
+        }
+        
     }
 
     public static int getInteger (Node element, String path) {
