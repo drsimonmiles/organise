@@ -12,6 +12,10 @@ public class SetPriorityReaction implements Reaction {
         _priority = priority;
     }
     
+    public Priority getPriority () {
+        return _priority;
+    }
+    
     @Override
     public void perform () {
         _task.setPriority (_priority);

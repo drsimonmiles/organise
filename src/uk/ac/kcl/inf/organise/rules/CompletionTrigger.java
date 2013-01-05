@@ -13,6 +13,10 @@ public class CompletionTrigger extends Trigger implements OrganiseEventListener 
         bus._listeners.add (this);
     }
 
+    public Task getTask () {
+        return _task;
+    }
+    
     @Override
     public void organiseEvent (OrganiseEvent event) {
         switch (event._type) {

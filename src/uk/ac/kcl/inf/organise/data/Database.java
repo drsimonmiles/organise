@@ -143,6 +143,18 @@ public class Database {
         return _tasks;
     }
     
+    public List<Rule> getTaskRules (Task task) {
+        List<Rule> rules = new LinkedList<> ();
+        
+        for (Rule rule : _rules) {
+            if (rule.getOwner () == task) {
+                rules.add (rule);
+            }
+        }
+        
+        return rules;
+    }
+    
     public boolean isTrigger (Task triggering) {
         for (Task task : _tasks) {
             for (Trigger trigger : task.getTriggers ()) {

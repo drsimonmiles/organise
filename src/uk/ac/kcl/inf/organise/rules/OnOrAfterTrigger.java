@@ -14,6 +14,10 @@ public class OnOrAfterTrigger extends Trigger implements OrganiseEventListener {
         bus._listeners.add (this);
     }
 
+    public Date getDate () {
+        return _date;
+    }
+    
     @Override
     public void organiseEvent (OrganiseEvent event) {
         Date today;

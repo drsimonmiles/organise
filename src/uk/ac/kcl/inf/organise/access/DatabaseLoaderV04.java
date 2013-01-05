@@ -6,6 +6,7 @@ import java.util.List;
 import nu.xom.Document;
 import nu.xom.Node;
 import nu.xom.Nodes;
+import static uk.ac.kcl.inf.organise.access.DatabaseLoader.*;
 import uk.ac.kcl.inf.organise.data.Database;
 import uk.ac.kcl.inf.organise.data.Priority;
 import uk.ac.kcl.inf.organise.data.Task;
@@ -21,17 +22,6 @@ import uk.ac.kcl.inf.organise.rules.Rule;
 import uk.ac.kcl.inf.organise.rules.SetPriorityReaction;
 
 public class DatabaseLoaderV04 {
-    public static final String DATABASE_FILE = "database.xml";
-    public static final String NORMAL_PRIORITY = "NORMAL";
-    public static final String URGENT_PRIORITY = "URGENT";
-    public static final String IMMEDIATE_PRIORITY = "IMMEDIATE";
-    public static final String COMPLETION_TRIGGER_TYPE = "COMPLETION";
-    public static final String ONORAFTER_TRIGGER_TYPE = "ON_OR_AFTER";
-    public static final String ALLOCATE_REACTION_TYPE = "ALLOCATE";
-    public static final String DELETE_TASK_REACTION_TYPE = "DELETE_TASK";
-    public static final String POSTPONE_RULE_REACTION_TYPE = "POSTPONE_RULE";
-    public static final String REMOVE_RULE_REACTION_TYPE = "REMOVE_RULE";
-    public static final String SET_PRIORITY_REACTION_TYPE = "SET_PRIORITY";
     private final EventBus _bus;
 
     public DatabaseLoaderV04 (EventBus bus) {
@@ -72,7 +62,7 @@ public class DatabaseLoaderV04 {
     
     private void loadRuleReaction (Rule rule, Database database, Node element) {
         String type = DatabaseLoader.getText (element, "type", false);
-        int taskIndex, minutes, days;
+        int minutes, days;
         Priority priority;
         
         switch (type) {
@@ -81,8 +71,7 @@ public class DatabaseLoaderV04 {
                 rule.addReaction (new AllocateReaction (rule.getOwner (), minutes));
                 break;
             case DELETE_TASK_REACTION_TYPE:
-                taskIndex = DatabaseLoader.getInteger (element, "task/text()");
-                rule.addReaction (new DeleteTaskReaction (database.getTasks ().get (taskIndex), database));
+                rule.addReaction (new DeleteTaskReaction (rule.getOwner (), database));
                 break;
             case POSTPONE_RULE_REACTION_TYPE:
                 days = DatabaseLoader.getInteger (element, "days/text()");

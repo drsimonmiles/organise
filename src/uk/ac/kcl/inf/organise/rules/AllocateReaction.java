@@ -10,6 +10,10 @@ public class AllocateReaction implements Reaction {
         _task = task;
         _minutes = minutes;
     }
+
+    public int getMinutes () {
+        return _minutes;
+    }
     
     @Override
     public void perform () {

@@ -12,7 +12,7 @@ public class Rule {
     private final List<Reaction> _reactions;
     private final boolean _requiresAll;
     private final Set<Trigger> _triggered;
-    
+
     public Rule (Task owner, boolean requiresAll) {
         _owner = owner;
         _triggers = new LinkedList<> ();
@@ -20,7 +20,7 @@ public class Rule {
         _triggered = new HashSet<> ();
         _requiresAll = requiresAll;
     }
-    
+
     public void addReaction (Reaction reaction) {
         _reactions.add (reaction);
     }
@@ -29,25 +29,29 @@ public class Rule {
         _triggers.add (trigger);
         trigger.registerRule (this);
     }
-    
+
+    public boolean doesRequireAll () {
+        return _requiresAll;
+    }
+
     public Task getOwner () {
         return _owner;
     }
-    
+
     public List<Reaction> getReactions () {
         return _reactions;
     }
-    
+
     public List<Trigger> getTriggers () {
         return _triggers;
     }
-    
+
     public void react () {
         for (Reaction reaction : _reactions) {
             reaction.perform ();
         }
     }
-    
+
     public void triggered (Trigger trigger) {
         if (_requiresAll) {
             _triggered.add (trigger);

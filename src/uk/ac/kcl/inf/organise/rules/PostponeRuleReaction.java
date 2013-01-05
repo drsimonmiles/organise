@@ -9,6 +9,10 @@ public class PostponeRuleReaction implements Reaction {
         _days = days;
     }
 
+    public int getDays () {
+        return _days;
+    }
+    
     @Override
     public void perform () {
         for (Trigger trigger : _rule.getTriggers ()) {
