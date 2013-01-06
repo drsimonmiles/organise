@@ -27,4 +27,9 @@ public class CompletionTrigger extends Trigger implements OrganiseEventListener 
                 break;
         }
     }
+    
+    @Override
+    public String toString () {
+        return "Task completion";
+    }
 }

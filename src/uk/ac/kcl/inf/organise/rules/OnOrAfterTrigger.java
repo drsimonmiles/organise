@@ -2,6 +2,7 @@ package uk.ac.kcl.inf.organise.rules;
 
 import java.util.Calendar;
 import java.util.Date;
+import uk.ac.kcl.inf.organise.access.DatabaseLoader;
 import uk.ac.kcl.inf.organise.events.EventBus;
 import uk.ac.kcl.inf.organise.events.OrganiseEvent;
 import uk.ac.kcl.inf.organise.events.OrganiseEventListener;
@@ -50,5 +51,10 @@ public class OnOrAfterTrigger extends Trigger implements OrganiseEventListener {
 
         return cal1.get (Calendar.YEAR) == cal2.get (Calendar.YEAR)
                && cal1.get (Calendar.DAY_OF_YEAR) == cal2.get (Calendar.DAY_OF_YEAR);
+    }
+
+    @Override
+    public String toString () {
+        return "On or after " + DatabaseLoader.DATE_FORMAT.format (_date);
     }
 }

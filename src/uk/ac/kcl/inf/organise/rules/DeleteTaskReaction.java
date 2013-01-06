@@ -17,4 +17,8 @@ public class DeleteTaskReaction implements Reaction {
         _database.deleteTask (_task);
     }
 
+    @Override
+    public String toString () {
+        return "Delete task";
+    }
 }

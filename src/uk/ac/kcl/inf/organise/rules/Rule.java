@@ -52,6 +52,27 @@ public class Rule {
         }
     }
 
+    @Override
+    public String toString () {
+        return "On " + toString (_triggers) + " do: " + toString (_reactions);
+    }
+    
+    private String toString (List<? extends Object> items) {
+        StringBuilder text = new StringBuilder ();
+        boolean first = true;
+        
+        for (Object item : items) {
+            if (first) {
+                first = false;
+            } else {
+                text.append (", ");
+            }
+            text.append (item.toString ());
+        }
+        
+        return text.toString ();
+    }
+    
     public void triggered (Trigger trigger) {
         if (_requiresAll) {
             _triggered.add (trigger);

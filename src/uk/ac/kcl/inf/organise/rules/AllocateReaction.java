@@ -20,4 +20,7 @@ public class AllocateReaction implements Reaction {
         _task.setAllocated (_task.getAllocated () + _minutes);
     }
 
+    public String toString () {
+        return "Allocate " + _minutes + " minutes";
+    }
 }

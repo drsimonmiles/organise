@@ -16,4 +16,8 @@ public class RemoveRuleReaction implements Reaction {
         _database.deleteRule (_rule);
     }
 
+    @Override
+    public String toString () {
+        return "Remove rule";
+    }
 }

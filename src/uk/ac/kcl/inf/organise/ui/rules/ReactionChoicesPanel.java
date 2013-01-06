@@ -35,17 +35,17 @@ public class ReactionChoicesPanel extends JPanel {
         group.add (_remove);
         group.add (_allocate);
 
-        setLayout (new MigLayout ("insets 0 0 0 0", "[0:0,grow 5,fill][0:0,grow 5,fill]", "[pref!][pref!][pref!][pref!]"));
-        add (_deleteTask, "wrap");
-        add (_setPriorityRed, "wrap");
-        add (_setPriorityAmber, "wrap");
+        setLayout (new MigLayout ("", "[0:0,grow 5,fill][0:0,grow 5,fill][0:0,grow 5,fill][0:0,grow 5,fill]", "[pref!][pref!][pref!][pref!]"));
+        add (_deleteTask);
+        add (_setPriorityRed);
+        add (_setPriorityAmber);
         add (_setPriorityGreen, "wrap");
         add (_postpone);
-        add (_days, "wrap");
-        add (_remove, "wrap");
+        add (_days);
         add (_allocate);
         add (_minutes, "wrap");
-        add (_add, "span 2");
+        add (_remove, "wrap");
+        add (_add, "span 4");
     }
 
 }

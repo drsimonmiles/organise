@@ -21,4 +21,9 @@ public class PostponeRuleReaction implements Reaction {
             }
         }
     }
+
+    @Override
+    public String toString () {
+        return "Postpone rule by " + _days + " days";
+    }
 }

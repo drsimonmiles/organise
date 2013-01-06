@@ -21,4 +21,8 @@ public class SetPriorityReaction implements Reaction {
         _task.setPriority (_priority);
     }
 
+    @Override
+    public String toString () {
+        return "Set priority to " + _priority;
+    }
 }

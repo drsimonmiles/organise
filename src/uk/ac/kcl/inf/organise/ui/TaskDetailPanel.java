@@ -10,28 +10,24 @@ import uk.ac.kcl.inf.organise.data.Task;
 import uk.ac.kcl.inf.organise.events.EventBus;
 import uk.ac.kcl.inf.organise.events.OrganiseEvent;
 import uk.ac.kcl.inf.organise.events.OrganiseEventListener;
-import uk.ac.kcl.inf.organise.ui.rules.ReactionChoicesPanel;
-import uk.ac.kcl.inf.organise.ui.rules.TriggerChoicesPanel;
+import uk.ac.kcl.inf.organise.ui.rules.RuleEditingPanel;
 
 public class TaskDetailPanel extends JPanel implements ActionListener, OrganiseEventListener {
     private Task _task;
     private final TaskPanel _summary;
     private final NotesPanel _notes;
-    private final TriggerChoicesPanel _triggerChoices;
-    private final ReactionChoicesPanel _reactionChoices;
+    private final RuleEditingPanel _rules;
                        
     public TaskDetailPanel (Database database, EventBus bus) {
         _task = null;
         _summary = new TaskPanel (database, bus);
         _notes = new NotesPanel (bus);
-        _triggerChoices = new TriggerChoicesPanel ();
-        _reactionChoices = new ReactionChoicesPanel ();
+        _rules = new RuleEditingPanel (_task, bus);
 
-        setLayout (new MigLayout ("insets 0 0 0 0", "[0:0,grow 5,fill][0:0,grow 5,fill]", "[pref!][0:0,grow 10,fill][0:0,grow 5,fill]"));
-        add (_summary, "span 2,wrap");
-        add (new JScrollPane (_notes), "span 2,wrap");
-        add (_triggerChoices);
-        add (_reactionChoices);
+        setLayout (new MigLayout ("insets 0 0 0 0", "[0:0,grow,fill]", "[pref!][0:0,grow 5,fill][0:0,grow 15,fill]"));
+        add (_summary, "wrap");
+        add (new JScrollPane (_notes), "wrap");
+        add (_rules);
         bus._listeners.add (this);
     }
 
