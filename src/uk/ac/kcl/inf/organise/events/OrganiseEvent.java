@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import uk.ac.kcl.inf.organise.data.Priority;
 import uk.ac.kcl.inf.organise.data.Task;
 import uk.ac.kcl.inf.organise.data.Trigger;
+import uk.ac.kcl.inf.organise.rules.Rule;
 
 public class OrganiseEvent {
     private EventBus _bus;
@@ -16,6 +17,7 @@ public class OrganiseEvent {
     public Priority _priorPriority;
     public Trigger _priorTrigger;
     public int _position, _priorInteger;
+    public Rule _rule;
 
     public OrganiseEvent (OrganiseEventType type, EventBus bus) {
         _bus = bus;
@@ -63,6 +65,11 @@ public class OrganiseEvent {
 
     public OrganiseEvent project (String project) {
         _project = project;
+        return this;
+    }
+    
+    public OrganiseEvent rule (Rule rule) {
+        _rule = rule;
         return this;
     }
 

@@ -53,7 +53,7 @@ public class DatabaseLoaderV04 {
         for (int index = 0; index < triggers.size (); index += 1) {
             loadRuleTrigger (rule, database, triggers.get (index));
         }
-        for (int index = 0; index < triggers.size (); index += 1) {
+        for (int index = 0; index < reactions.size (); index += 1) {
             loadRuleReaction (rule, database, reactions.get (index));
         }
         
@@ -75,10 +75,10 @@ public class DatabaseLoaderV04 {
                 break;
             case POSTPONE_RULE_REACTION_TYPE:
                 days = DatabaseLoader.getInteger (element, "days/text()");
-                rule.addReaction (new PostponeRuleReaction (rule, days));               
+                rule.addReaction (new PostponeRuleReaction (days));
                 break;
             case REMOVE_RULE_REACTION_TYPE:
-                rule.addReaction (new RemoveRuleReaction (rule, database));               
+                rule.addReaction (new RemoveRuleReaction (database));               
                 break;
             case SET_PRIORITY_REACTION_TYPE:
                 priority = DatabaseLoader.getPriority (element, "priority/text()");

@@ -13,7 +13,7 @@ public class DeleteTaskReaction implements Reaction {
     }
     
     @Override
-    public void perform () {
+    public void perform (Rule rule) {
         _database.deleteTask (_task);
     }
 

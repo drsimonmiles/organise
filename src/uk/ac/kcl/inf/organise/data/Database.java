@@ -23,6 +23,7 @@ public class Database {
     
     public void addRule (Rule rule) {
         _rules.add (rule);
+        _bus.event (OrganiseEventType.ruleAdded).rule (rule).fire ();
     }
     
     public void addTask (Task newTask) {
@@ -72,6 +73,7 @@ public class Database {
     
     public void deleteRule (Rule rule) {
         _rules.remove (rule);
+        _bus.event (OrganiseEventType.ruleRemoved).rule (rule).fire ();
     }
     
     public void deleteTask (Task task) {

@@ -48,7 +48,7 @@ public class Rule {
 
     public void react () {
         for (Reaction reaction : _reactions) {
-            reaction.perform ();
+            reaction.perform (this);
         }
     }
 

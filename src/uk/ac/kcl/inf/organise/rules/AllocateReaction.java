@@ -16,7 +16,7 @@ public class AllocateReaction implements Reaction {
     }
     
     @Override
-    public void perform () {
+    public void perform (Rule rule) {
         _task.setAllocated (_task.getAllocated () + _minutes);
     }
 

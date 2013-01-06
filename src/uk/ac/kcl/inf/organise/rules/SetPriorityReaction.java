@@ -17,7 +17,7 @@ public class SetPriorityReaction implements Reaction {
     }
     
     @Override
-    public void perform () {
+    public void perform (Rule rule) {
         _task.setPriority (_priority);
     }
 

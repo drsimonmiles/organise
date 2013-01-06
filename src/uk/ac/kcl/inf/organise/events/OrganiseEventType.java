@@ -6,6 +6,7 @@ public enum OrganiseEventType {
     taskAdded, taskCompleted, taskDeleted, taskOrderChanged,
     taskTextChanged, taskPriorityChanged, taskAllocatedChanged, taskNotesChanged,
     triggerAdded, triggerDeleted,
+    ruleAdded, ruleRemoved,
     taskChildAdded, taskChildRemoved,
     taskInFocus, anchorChanged,
     keyPressed, keyTyped, keyReleased
