@@ -30,7 +30,7 @@ public class TriggerChoicesPanel extends JPanel implements ActionListener {
         _parent = parent;
         _task = null;
         _bus = bus;
-        
+
         _completion = new JRadioButton ("Completion");
         _onOrAfter = new JRadioButton ("On or after (e.g. 2013 Jan 09)");
         _dependent = new JRadioButton ("After completed");
@@ -50,17 +50,17 @@ public class TriggerChoicesPanel extends JPanel implements ActionListener {
         add (_dependent);
         add (_dependentTask, "wrap");
         add (_add, "span 2");
-        
+
         _dependent.setEnabled (false);
         _dependentTask.setEnabled (false);
-        
+
         _add.addActionListener (this);
     }
 
     @Override
     public void actionPerformed (ActionEvent occur) {
         Trigger trigger = null;
-        
+
         if (_completion.isSelected ()) {
             trigger = new CompletionTrigger (_task, _bus);
         }
@@ -71,12 +71,12 @@ public class TriggerChoicesPanel extends JPanel implements ActionListener {
                 System.err.println (notADate.getMessage ());
             }
         }
-        
+
         if (trigger != null) {
             _parent.addTrigger (trigger);
         }
     }
-    
+
     public void open (Task task) {
         _task = task;
     }
