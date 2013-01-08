@@ -28,6 +28,7 @@ public class ItemListPanel <T> extends JPanel {
         _items.add (item);
         _panels.put (item, panel);
         add (panel, "wrap");
+        validate ();
         repaint ();
     }
     
@@ -41,6 +42,7 @@ public class ItemListPanel <T> extends JPanel {
         }
         _items.clear ();
         _panels.clear ();
+        validate ();
         repaint ();
     }
     
@@ -62,9 +64,14 @@ public class ItemListPanel <T> extends JPanel {
     }
     
     public void removeItem (T item) {
-        remove (_panels.get (item));
+        ItemPanel panel = _panels.get (item);
+        
+        if (panel != null) {
+            remove (panel);
+        }
         _items.remove (item);
         _panels.remove (item);
+        validate ();
         repaint ();
     }
 }

@@ -52,6 +52,7 @@ public class ReactionChoicesPanel extends JPanel implements ActionListener {
         group.add (_postpone);
         group.add (_remove);
         group.add (_allocate);
+        _deleteTask.setSelected (true);
 
         setLayout (new MigLayout ("", "[0:0,grow 5,fill][0:0,grow 5,fill][0:0,grow 5,fill][0:0,grow 5,fill]", "[pref!][pref!][pref!][pref!]"));
         add (_deleteTask);

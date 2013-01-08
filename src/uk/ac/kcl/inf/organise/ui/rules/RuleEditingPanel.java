@@ -36,7 +36,7 @@ public class RuleEditingPanel extends JPanel implements ActionListener, ItemsLis
         
         setLayout (new MigLayout ("insets 0 0 0 0", "[0:0,grow 5,fill][0:0,grow 5,fill]", "[pref!][0:0,grow 5,fill][pref!][0:0,grow 5,fill][pref!][pref!][0:0,grow 5,fill][pref!]"));
         
-        _taskRules = new TaskRuleList (database);
+        _taskRules = new TaskRuleList (database, bus);
         _triggerChoices = new TriggerChoicesPanel (this, bus);
         _reactionChoices = new ReactionChoicesPanel (this, database);
         _selectedTriggers = new ItemListPanel (true, false);

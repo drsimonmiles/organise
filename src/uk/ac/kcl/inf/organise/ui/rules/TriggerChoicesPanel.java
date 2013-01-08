@@ -32,7 +32,7 @@ public class TriggerChoicesPanel extends JPanel implements ActionListener {
         _bus = bus;
         
         _completion = new JRadioButton ("Completion");
-        _onOrAfter = new JRadioButton ("On or after (yyyy mm dd)");
+        _onOrAfter = new JRadioButton ("On or after (e.g. 2013 Jan 09)");
         _dependent = new JRadioButton ("After completed");
         _date = new JTextField ();
         _dependentTask = new JTextField ();
@@ -68,6 +68,7 @@ public class TriggerChoicesPanel extends JPanel implements ActionListener {
             try {
                 trigger = new OnOrAfterTrigger (DatabaseLoader.DATE_FORMAT.parse (_date.getText ()), _bus);
             } catch (ParseException notADate) {
+                System.err.println (notADate.getMessage ());
             }
         }
         

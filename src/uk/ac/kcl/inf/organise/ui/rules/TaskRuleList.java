@@ -2,6 +2,7 @@ package uk.ac.kcl.inf.organise.ui.rules;
 
 import uk.ac.kcl.inf.organise.data.Database;
 import uk.ac.kcl.inf.organise.data.Task;
+import uk.ac.kcl.inf.organise.events.EventBus;
 import uk.ac.kcl.inf.organise.events.OrganiseEvent;
 import uk.ac.kcl.inf.organise.events.OrganiseEventListener;
 import uk.ac.kcl.inf.organise.rules.Rule;
@@ -10,10 +11,11 @@ public class TaskRuleList extends ItemListPanel <Rule> implements OrganiseEventL
     private Task _task;
     private final Database _database;
     
-    public TaskRuleList (Database database) {
-        super (true, true);
+    public TaskRuleList (Database database, EventBus bus) {
+        super (true, false);
         _task = null;
         _database = database;
+        bus._listeners.add (this);
     }
     
     public void open (Task task) {
