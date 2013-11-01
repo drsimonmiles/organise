@@ -13,7 +13,8 @@ public class TopPanel extends JSplitPane implements OrganiseEventListener {
     public TopPanel (Database database, EventBus bus) {
         super (HORIZONTAL_SPLIT, true,
                new MultiImmediates (database, bus),
-               new TopRightPanel (database, bus));
+               new JScrollPane (new NotesPanel (bus), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
+               //new TopRightPanel (database, bus));
         Settings.get ().loadPosition (SettingType.topPaneSplit, this);
         bus._listeners.add (this);
     }
